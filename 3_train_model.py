@@ -30,7 +30,7 @@ randF=RandomForestClassifier(n_jobs=10,
                              criterion = param_impurity,
                              random_state=0)
 
-# The magical model.fit() :)
+# The magical `model.fit()` :)
 randF.fit(X_train, y_train)
 
 
@@ -46,7 +46,7 @@ print(auroc, ap)
 # This model does quite well. A littel too well. I suspect its over fitting.
 
 
-# Not lets try a Logistic Regression classifier
+# Now lets try a Logistic Regression classifier
 
 from sklearn.linear_model import LogisticRegression
 
