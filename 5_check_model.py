@@ -5,7 +5,18 @@ import pandas as pd
 import pickle
 import cdsw
 
-cc_data = pd.read_pickle('cc_dataframe')
+from pyspark.sql import SparkSession
+
+# Load the data
+spark = SparkSession.builder.appName("cc_fraud").getOrCreate()
+
+# Read the csv from your HDFS home directory
+spark_cc_data = spark.read.csv(
+    "creditcard.csv", header=True, mode="DROPMALFORMED",inferSchema=True
+)
+
+# Load the data
+cc_data = spark_cc_data.toPandas()
 
 X = cc_data.iloc[:,1:len(cc_data.columns)-1]
 y = cc_data.iloc[:,len(cc_data.columns)-1]
