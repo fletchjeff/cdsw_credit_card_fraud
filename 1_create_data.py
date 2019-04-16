@@ -18,3 +18,4 @@ cc_dataframe = cc_data.toPandas()
 # Show the columns in the data.
 cc_dataframe[1:10].transpose()
 
+spark.stop()

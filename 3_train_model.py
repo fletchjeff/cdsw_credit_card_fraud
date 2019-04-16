@@ -77,6 +77,8 @@ print(auroc, ap)
 
 pickle.dump(randF, open("cc_model.pkl","wb"))
 
+spark.stop()
+
 
 
 

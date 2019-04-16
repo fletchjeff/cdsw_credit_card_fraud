@@ -159,3 +159,5 @@ for i, cn in enumerate(data[features]):
     ax.set_xlabel('')
     ax.set_title('histogram of feature: ' + str(cn))
     plt.show()
+
+spark.stop()
