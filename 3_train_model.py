@@ -6,9 +6,18 @@ import numpy as np
 import pandas as pd
 import random
 import pickle
+from pyspark.sql import SparkSession
 
 # Load the data
-cc_data = pd.read_pickle('cc_dataframe')
+spark = SparkSession.builder.appName("cc_fraud").getOrCreate()
+
+# Read the csv from your HDFS home directory
+spark_cc_data = spark.read.csv(
+    "creditcard.csv", header=True, mode="DROPMALFORMED",inferSchema=True
+)
+
+# Load the data
+cc_data = spark_cc_data.toPandas()
 
 # First split the data into features `X` and lables `y`. Then split the data further into 
 # test and train data sets.

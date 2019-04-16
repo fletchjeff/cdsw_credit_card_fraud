@@ -2,4 +2,6 @@
 cd resources
 unzip creditcard.csv.zip
 hdfs dfs -copyFromLocal creditcard.csv creditcard.csv
+rm creditcard.csv.zip
+rm creditcard.csv
 pip3 install scikit-learn --upgrade

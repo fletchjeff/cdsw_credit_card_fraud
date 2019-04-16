@@ -9,9 +9,18 @@ import pandas as pd
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 import seaborn as sns
+from pyspark.sql import SparkSession
 
 ## Load the data
-data = pd.read_pickle('cc_dataframe')
+
+# Create the Spark context.
+spark = SparkSession.builder.appName("cc_fraud").getOrCreate()
+
+# Read the csv from your HDFS home directory
+cc_data = spark.read.csv(
+    "creditcard.csv", header=True, mode="DROPMALFORMED",inferSchema=True
+)
+data = cc_data.toPandas()
 
 ## Describe tge data
 # * the name of each column
